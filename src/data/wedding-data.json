@@ -1,0 +1,67 @@
+{
+  "branding": {
+    "logo": "/Logo.png"
+  },
+  "couple": {
+    "groom": {
+      "fullName": "Ryan Finisa, A.Md.Pjk.",
+      "nickname": "Ryan",
+      "parents": "Putra dari Bapak Salman, A.Md & Ibu Cut Fitriani",
+      "photo": "/men_2.png",
+      "instagram": "@ryanfinisa"
+    },
+    "bride": {
+      "fullName": "drg. Ghina Alya Shafira",
+      "nickname": "Ghina",
+      "parents": "Putri dari Bapak Azhari, SE, MM & Ibu Sulastri, A.Md",
+      "photo": "/women_2.png",
+      "instagram": "@ghinaalyashafira"
+    }
+  },
+  "events": {
+    "targetDate": "2026-06-05T09:00:00",
+    "akad": {
+      "title": "Akad nikah",
+      "date": "Jumat, 5 Juni 2026",
+      "time": "09:00 WIB - Selesai",
+      "locationName": "kediaman mempelai wanita",
+      "locationAddress": "Jl. Kereta Api Lama, Lubok Batee, Kec. Ingin Jaya, Kabupaten Aceh Besar.",
+      "mapLink": "https://maps.app.goo.gl/UyqEEqNCq4BVSZpC7?g_st=ic"
+    },
+    "resepsi": {
+      "title": "Resepsi",
+      "date": "Minggu, 7 Juni 2026",
+      "time": "10:00 WIB - Selesai",
+      "locationName": "Gedung Hj. Yusriah",
+      "locationAddress": "Jl. Soekarno - Hatta No.1, Daroy Kameu, Kec. Darul Imarah, Kabupaten Aceh Besar.",
+      "mapLink": "https://maps.app.goo.gl/8Mfn6YtGxoqPmVUdA?g_st=ic"
+    }
+  },
+  "gallery": [
+    "/image 2.jpg",
+    "/image 3.png",
+    "/image 4.png",
+    "/image 6.png",
+    "https://picsum.photos/seed/wedding1/600/800",
+    "https://picsum.photos/seed/wedding2/600/800"
+  ],
+  "gifts": [
+    {
+      "bank": "BSI",
+      "accountNumber": "71474786",
+      "accountName": "Ghina Alya Shafira"
+    }
+  ],
+  "giftAddress": {
+    "name": "Ghina Alya",
+    "address": "Jl. Rel kereta api lama, Gampong Lubok Batee, Kec. Ingin Jaya, Kab. Aceh Besar, Samping TK Khairani",
+    "No. Hp": "0811-6805-100",
+    "mapLink": "https://maps.app.goo.gl/UyqEEqNCq4BVSZpC7?g_st=ic"
+  },
+  "quotes": {
+    "main": "\"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.\"",
+    "mainSource": "QS. Ar-Rum : 21",
+    "detail": "\"Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah, perkenankanlah kami merangkai kasih sayang yang Kau ciptakan di antara kami.\"",
+    "closing": "\"Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai.\""
+  }
+}

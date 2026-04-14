@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@200;300;400;500&display=swap');
+@import "tailwindcss";
+
+/* ===================================
+   VARIABLES & COLORS
+=================================== */
+:root {
+  /* Rich Burgundy / Maroon */
+  --color-primary: #7A2E39;
+  --color-primary-dark: #581C24;
+  --color-primary-light: #9B3F4D;
+  
+  /* Metallic Gold */
+  --color-gold: #C5A059;
+  --color-gold-light: #E8D090;
+  --color-gold-dark: #8E7036;
+  
+  /* Backgrounds */
+  --color-bg-light: #FCFAF5;
+  --color-bg-dark: #1A1818;
+  
+  /* Text */
+  --color-text-main: #332C2A;
+  --color-text-muted: #726661;
+}
+
+body {
+  margin: 0;
+  font-family: 'Cormorant Garamond', serif;
+  background-color: var(--color-bg-light);
+  color: var(--color-text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===================================
+   TYPOGRAPHY
+=================================== */
+.font-script {
+  font-family: 'Alex Brush', cursive !important;
+}
+
+.font-serif {
+  font-family: 'Cormorant Garamond', serif !important;
+}
+
+.font-sans {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 50%, var(--color-gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: var(--color-gold); /* fallback */
+  text-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+}
+
+.section-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+}
+
+.arabic-text {
+  font-family: "Traditional Arabic", "Amiri", "Scheherazade", serif;
+}
+
+/* ===================================
+   UTILITIES
+=================================== */
+.gold-line-h {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.gold-line-v {
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--color-gold), transparent);
+}
+
+.btn-luxury {
+  background: var(--color-primary);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-primary-light);
+  box-shadow: 0 10px 30px -10px rgba(122, 46, 57, 0.5);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-luxury::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: all 0.6s ease;
+}
+
+.btn-luxury:hover {
+  background: var(--color-primary-dark);
+  box-shadow: 0 15px 40px -10px rgba(122, 46, 57, 0.7);
+  transform: translateY(-2px);
+}
+
+.btn-luxury:hover::before {
+  left: 100%;
+}
+
+/* Premium Card / Glassmorphism */
+.glass-card {
+  background: rgba(252, 250, 245, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+/* Base fade animations */
+.animate-section {
+  opacity: 0;
+  will-change: opacity, transform, filter;
+}
+
+/* ===================================
+   PETALS ANIMATION
+=================================== */
+.petals-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.petal {
+  position: absolute;
+  top: -20px;
+  animation: fall linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg) scale(1.2); opacity: 0; }
+}
+
+/* ===================================
+   SCROLLBAR (For Detail Section)
+=================================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-dark);
+}
