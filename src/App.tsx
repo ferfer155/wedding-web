@@ -63,9 +63,10 @@ const DetailBackground = () => {
         <div ref={parallaxRef} className="w-full flex flex-col">
           <div className="relative w-full h-[100vh]">
             <img
-              src="/image 7.jpeg"
+              src="/image 7.webp"
               alt="Detail Background 1"
-              className="w-full h-full object-cover object-top opacity-80 mix-blend-multiply"
+              loading="lazy"
+              className="w-full h-full object-cover object-top opacity-80"
               onError={(e) => {
                 e.currentTarget.src =
                   "https://picsum.photos/seed/mosque-pink/1080/1920";
@@ -76,9 +77,10 @@ const DetailBackground = () => {
           <div className="relative w-full h-[100vh]">
             <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[var(--color-bg-light)] to-transparent z-10"></div>
             <img
-              src="/bakground_detail_1.png"
+              src="/bakground_detail_1.webp"
               alt="Detail Background 2"
-              className="w-full h-full object-cover object-top opacity-80 mix-blend-multiply"
+              loading="lazy"
+              className="w-full h-full object-cover object-top opacity-80"
               onError={(e) => {
                 e.currentTarget.src =
                   "https://picsum.photos/seed/bg1/1080/1920";
@@ -89,9 +91,10 @@ const DetailBackground = () => {
           <div className="relative w-full h-[100vh]">
             <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[var(--color-bg-light)] to-transparent z-10"></div>
             <img
-              src="/bakground_detail_2.png"
+              src="/bakground_detail_2.webp"
               alt="Detail Background 3"
-              className="w-full h-full object-cover object-top opacity-80 mix-blend-multiply"
+              loading="lazy"
+              className="w-full h-full object-cover object-top opacity-80"
               onError={(e) => {
                 e.currentTarget.src =
                   "https://picsum.photos/seed/bg2/1080/1920";
@@ -102,9 +105,10 @@ const DetailBackground = () => {
           <div className="relative w-full h-[100vh]">
             <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[var(--color-bg-light)] to-transparent z-10"></div>
             <img
-              src="/bakground_detail_3.png"
+              src="/bakground_detail_3.webp"
               alt="Detail Background 4"
-              className="w-full h-full object-cover object-top opacity-80 mix-blend-multiply"
+              loading="lazy"
+              className="w-full h-full object-cover object-top opacity-80"
               onError={(e) => {
                 e.currentTarget.src =
                   "https://picsum.photos/seed/bg3/1080/1920";

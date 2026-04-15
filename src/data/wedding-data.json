@@ -1,20 +1,20 @@
 {
   "branding": {
-    "logo": "/Logo.png"
+    "logo": "/Logo.webp"
   },
   "couple": {
     "groom": {
       "fullName": "Ryan Finisa, A.Md.Pjk.",
       "nickname": "Ryan",
       "parents": "Bapak Salman, A.Md & Ibu Cut Fitriani",
-      "photo": "/men_2.png",
+      "photo": "/men_2.webp",
       "instagram": "@ryanfinisa"
     },
     "bride": {
       "fullName": "drg. Ghina Alya Shafira",
       "nickname": "Ghina",
       "parents": "Bapak Azhari, SE, MM & Ibu Sulastri, A.Md",
-      "photo": "/women_2.png",
+      "photo": "/women_2.webp",
       "instagram": "@ghinaalyashafira"
     }
   },
@@ -38,10 +38,10 @@
     }
   },
   "gallery": [
-    "/image 2.jpg",
-    "/image 3.png",
-    "/image 4.png",
-    "/image 6.png",
+    "/image 2.webp",
+    "/image 3.webp",
+    "/image 4.webp",
+    "/image 6.webp",
     "https://picsum.photos/seed/wedding1/600/800",
     "https://picsum.photos/seed/wedding2/600/800"
   ],
