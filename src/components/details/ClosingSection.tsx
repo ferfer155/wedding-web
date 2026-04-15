@@ -19,16 +19,12 @@ export const ClosingSection: React.FC = () => {
           kami.
         </p>
 
-        <p className="arabic-text text-3xl text-[var(--color-primary-dark)]">
-          وَالسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ
-        </p>
-
         <div className="space-y-4 pt-8">
           <p className="font-sans text-[0.6rem] tracking-[0.4em] uppercase text-[var(--color-gold-dark)]">
             Kami Yang Berbahagia
           </p>
 
-          <h2 className="font-script text-[4.5rem] text-[var(--color-primary)] leading-[0.8] mt-4">
+          <h2 className="font-script text-[3.5rem] text-[var(--color-primary)] leading-[0.8] mt-4">
             {weddingData.couple.bride.nickname}
             <span className="font-sans text-[1.5rem] text-[var(--color-gold)] mx-4 block md:inline py-4">
               &amp;
@@ -37,12 +33,12 @@ export const ClosingSection: React.FC = () => {
           </h2>
 
           <div className="flex justify-center pt-8">
-            <div className="w-16 h-16 border border-[var(--color-gold)]/40 rounded-full flex items-center justify-center p-1 relative">
+            <div className="w-16 h-16 border border-[var(--color-gold)]/40 rounded-full flex items-center justify-center p-1 relative ">
               <div className="absolute inset-[3px] border border-[var(--color-gold)]/20 rounded-full" />
               <img
                 src={weddingData.branding.logo}
                 alt="Monogram"
-                className="w-8 h-8 object-contain opacity-80"
+                className="w-8 h-8 object-contain filter drop-shadow-md"
                 onError={(e) => {
                   e.currentTarget.style.display = "none";
                 }}

@@ -89,7 +89,7 @@ export const FlowerDecorations: React.FC = () => {
       >
         <img
           ref={tlRef}
-          src="/flower.png"
+          src="/flower.webp"
           alt="Flower Decoration"
           className="w-full h-full object-contain origin-bottom-left"
         />
@@ -101,7 +101,7 @@ export const FlowerDecorations: React.FC = () => {
       >
         <img
           ref={trRef}
-          src="/flower.png"
+          src="/flower.webp"
           alt="Flower Decoration"
           className="w-full h-full object-contain origin-bottom-left"
         />
@@ -110,7 +110,7 @@ export const FlowerDecorations: React.FC = () => {
       <div className="absolute -bottom-8 -left-8 w-32">
         <img
           ref={blRef}
-          src="/flower.png"
+          src="/flower.webp"
           alt="Flower Decoration"
           className="w-full h-full object-contain origin-bottom-left"
         />
@@ -122,7 +122,7 @@ export const FlowerDecorations: React.FC = () => {
       >
         <img
           ref={brRef}
-          src="/flower.png"
+          src="/flower.webp"
           alt="Flower Decoration"
           className="w-full h-full object-contain origin-bottom-left"
         />

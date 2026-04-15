@@ -322,7 +322,6 @@ export default function App() {
                 src="/image_background_1.webp"
                 alt="Background"
                 className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-multiply"
-                
                 onError={(e) => {
                   e.currentTarget.src =
                     "https://picsum.photos/seed/palace/800/1200";

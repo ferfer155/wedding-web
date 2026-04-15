@@ -133,10 +133,8 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
       {/* ── SPLIT PANELS ── */}
       <div
         ref={leftPanelRef}
-        className="absolute top-0 left-0 w-1/2 h-full bg-[var(--color-bg-light)] border-r border-[rgba(197,160,89,0.15)] shadow-[20px_0_40px_-10px_rgba(0,0,0,0.03)]"
-      >
-        <div className="absolute right-0 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-[var(--color-primary-light)]/20 to-transparent" />
-      </div>
+        className="absolute top-0 left-0 w-1/2 h-full bg-[var(--color-bg-light)] shadow-[20px_0_40px_-10px_rgba(0,0,0,0.03)]"
+      ></div>
       <div
         ref={rightPanelRef}
         className="absolute top-0 right-0 w-1/2 h-full bg-[var(--color-bg-light)]"
