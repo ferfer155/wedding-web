@@ -16,7 +16,9 @@ export const RsvpWishesSection: React.FC = () => {
   const [guestName, setGuestName] = useState("");
   const [guestId, setGuestId] = useState<string | null>(null);
 
-  const [rsvpStatus, setRsvpStatus] = useState<"Hadir" | "Tidak Hadir" | null>(null);
+  const [rsvpStatus, setRsvpStatus] = useState<"Hadir" | "Tidak Hadir" | null>(
+    null,
+  );
   const [guestCount, setGuestCount] = useState<number>(1);
   const [rsvpNotes, setRsvpNotes] = useState("");
   const [isSubmittingRsvp, setIsSubmittingRsvp] = useState(false);
@@ -138,7 +140,7 @@ export const RsvpWishesSection: React.FC = () => {
       ]);
 
       if (error) throw error;
-      
+
       setRsvpSuccess(true);
       setTimeout(() => setRsvpSuccess(false), 5000);
     } catch (error: any) {
@@ -183,7 +185,9 @@ export const RsvpWishesSection: React.FC = () => {
 
       const { error } = await supabase
         .from("comments")
-        .insert([{ guest_id: currentGuestId, name: guestName, message: wishMessage }]);
+        .insert([
+          { guest_id: currentGuestId, name: guestName, message: wishMessage },
+        ]);
       if (error) throw error;
       setWishSuccess(true);
       setWishMessage("");
@@ -198,7 +202,10 @@ export const RsvpWishesSection: React.FC = () => {
 
   const scrollCarousel = (dir: "left" | "right") => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: dir === "left" ? -300 : 300, behavior: "smooth" });
+      carouselRef.current.scrollBy({
+        left: dir === "left" ? -300 : 300,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -217,7 +224,6 @@ export const RsvpWishesSection: React.FC = () => {
 
   return (
     <div className="py-24 space-y-32">
-      
       {/* ── RSVP SECTION ── */}
       <section className="w-full">
         <div className="w-full max-w-sm mx-auto text-center space-y-8">
@@ -235,9 +241,16 @@ export const RsvpWishesSection: React.FC = () => {
             </h3>
           </div>
 
-          <form onSubmit={handleRsvpSubmit} className="animate-section text-left space-y-8" data-anim="fade-up" data-delay="0.1">
+          <form
+            onSubmit={handleRsvpSubmit}
+            className="animate-section text-left space-y-8"
+            data-anim="fade-up"
+            data-delay="0.1"
+          >
             <div>
-              <p className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-[var(--color-gold-dark)] mb-2">Nama Lengkap</p>
+              <p className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-[var(--color-gold-dark)] mb-2">
+                Nama Lengkap
+              </p>
               <input
                 type="text"
                 required
@@ -245,13 +258,19 @@ export const RsvpWishesSection: React.FC = () => {
                 onChange={(e) => setGuestName(e.target.value)}
                 placeholder="Tulis nama Anda"
                 style={inputStyle}
-                onFocus={(e) => (e.target.style.borderColor = "var(--color-primary)")}
-                onBlur={(e) => (e.target.style.borderColor = "rgba(197, 160, 89, 0.4)")}
+                onFocus={(e) =>
+                  (e.target.style.borderColor = "var(--color-primary)")
+                }
+                onBlur={(e) =>
+                  (e.target.style.borderColor = "rgba(197, 160, 89, 0.4)")
+                }
               />
             </div>
 
             <div>
-              <p className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-[var(--color-gold-dark)] mb-4">Apakah Anda Hadir?</p>
+              <p className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-[var(--color-gold-dark)] mb-4">
+                Apakah Anda Hadir?
+              </p>
               <div className="flex gap-4">
                 {(["Hadir", "Tidak Hadir"] as const).map((status) => (
                   <button
@@ -274,11 +293,13 @@ export const RsvpWishesSection: React.FC = () => {
 
             {rsvpStatus === "Hadir" && (
               <div className="animate-fade-in-up">
-                <p className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-[var(--color-gold-dark)] mb-2">Jumlah Tamu</p>
+                <p className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-[var(--color-gold-dark)] mb-2">
+                  Jumlah Tamu
+                </p>
                 <select
                   value={guestCount}
                   onChange={(e) => setGuestCount(Number(e.target.value))}
-                  style={{...inputStyle, WebkitAppearance: 'none'}}
+                  style={{ ...inputStyle, WebkitAppearance: "none" }}
                 >
                   <option value={1}>1 Orang</option>
                   <option value={2}>2 Orang</option>
@@ -288,7 +309,9 @@ export const RsvpWishesSection: React.FC = () => {
 
             {rsvpStatus === "Tidak Hadir" && (
               <div className="animate-fade-in-up">
-                <p className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-[var(--color-gold-dark)] mb-2">Alasan (Opsional)</p>
+                <p className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-[var(--color-gold-dark)] mb-2">
+                  Alasan (Opsional)
+                </p>
                 <input
                   type="text"
                   value={rsvpNotes}
@@ -323,7 +346,7 @@ export const RsvpWishesSection: React.FC = () => {
 
       {/* ── MESSAGES / WISHES ── */}
       <section className="w-full">
-         <div className="w-full max-w-sm mx-auto text-center space-y-8 mb-10">
+        <div className="w-full max-w-sm mx-auto text-center space-y-8 mb-10">
           <div className="animate-section" data-anim="fade-up">
             <p className="font-sans text-[0.6rem] tracking-[0.3em] uppercase text-[var(--color-text-muted)] mb-3">
               Doa & Harapan
@@ -338,32 +361,49 @@ export const RsvpWishesSection: React.FC = () => {
             </h3>
           </div>
 
-          <form onSubmit={handleWishSubmit} className="animate-section text-left space-y-6" data-anim="fade-up" data-delay="0.1">
-             <div>
-              <p className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-[var(--color-gold-dark)] mb-2">Nama Anda</p>
+          <form
+            onSubmit={handleWishSubmit}
+            className="animate-section text-left space-y-6"
+            data-anim="fade-up"
+            data-delay="0.1"
+          >
+            <div>
+              <p className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-[var(--color-gold-dark)] mb-2">
+                Nama Anda
+              </p>
               <input
                 type="text"
                 required
                 value={guestName}
                 onChange={(e) => setGuestName(e.target.value)}
                 style={inputStyle}
-                onFocus={(e) => (e.target.style.borderColor = "var(--color-primary)")}
-                onBlur={(e) => (e.target.style.borderColor = "rgba(197, 160, 89, 0.4)")}
+                onFocus={(e) =>
+                  (e.target.style.borderColor = "var(--color-primary)")
+                }
+                onBlur={(e) =>
+                  (e.target.style.borderColor = "rgba(197, 160, 89, 0.4)")
+                }
               />
             </div>
             <div>
-              <p className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-[var(--color-gold-dark)] mb-2">Pesan</p>
+              <p className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-[var(--color-gold-dark)] mb-2">
+                Pesan
+              </p>
               <textarea
                 rows={3}
                 required
                 value={wishMessage}
                 onChange={(e) => setWishMessage(e.target.value)}
                 style={{ ...inputStyle, resize: "none" }}
-                onFocus={(e) => (e.target.style.borderColor = "var(--color-primary)")}
-                onBlur={(e) => (e.target.style.borderColor = "rgba(197, 160, 89, 0.4)")}
+                onFocus={(e) =>
+                  (e.target.style.borderColor = "var(--color-primary)")
+                }
+                onBlur={(e) =>
+                  (e.target.style.borderColor = "rgba(197, 160, 89, 0.4)")
+                }
               />
             </div>
-            
+
             <button
               type="submit"
               disabled={isSubmittingWish || !guestName || !wishMessage}
@@ -380,11 +420,24 @@ export const RsvpWishesSection: React.FC = () => {
         </div>
 
         {/* Carousel */}
-        <div className="w-full overflow-hidden max-w-[100vw] px-4 animate-section" data-anim="fade-up" data-delay="0.2">
-          
+        <div
+          className="w-full overflow-hidden max-w-[100vw] px-4 animate-section"
+          data-anim="fade-up"
+          data-delay="0.2"
+        >
           <div className="flex items-center justify-end gap-2 mb-4 pr-2">
-            <button onClick={() => scrollCarousel("left")} className="p-2 border border-[var(--color-gold)] text-[var(--color-gold-dark)] hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-colors"><ChevronLeft className="w-4 h-4"/></button>
-            <button onClick={() => scrollCarousel("right")} className="p-2 border border-[var(--color-gold)] text-[var(--color-gold-dark)] hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-colors"><ChevronRight className="w-4 h-4"/></button>
+            <button
+              onClick={() => scrollCarousel("left")}
+              className="p-2 border border-[var(--color-gold)] text-[var(--color-gold-dark)] hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-colors"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => scrollCarousel("right")}
+              className="p-2 border border-[var(--color-gold)] text-[var(--color-gold-dark)] hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-colors"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
 
           <div
@@ -392,9 +445,13 @@ export const RsvpWishesSection: React.FC = () => {
             className="flex overflow-x-auto gap-4 pb-8 pl-2 pr-12 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           >
             {isLoadingComments ? (
-               <p className="font-serif italic text-[var(--color-text-muted)] w-full text-center">Memuat...</p>
+              <p className="font-serif italic text-[var(--color-text-muted)] w-full text-center">
+                Memuat...
+              </p>
             ) : comments.length === 0 ? (
-               <p className="font-serif italic text-[var(--color-text-muted)] w-full text-center">Belum ada pesan.</p>
+              <p className="font-serif italic text-[var(--color-text-muted)] w-full text-center">
+                Belum ada pesan.
+              </p>
             ) : (
               comments.map((comment) => (
                 <div
@@ -421,12 +478,21 @@ export const RsvpWishesSection: React.FC = () => {
       {/* ── MODALS ── */}
       {showRsvpConfirm &&
         createPortal(
-          <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-[var(--color-bg-dark)]/80 backdrop-blur-sm p-4" onClick={() => setShowRsvpConfirm(false)}>
-            <div className="bg-[var(--color-bg-light)] w-full max-w-md p-8 relative rounded-sm border border-[var(--color-gold)]/30 text-center" onClick={(e) => e.stopPropagation()}>
-              <h4 className="font-script text-[3rem] text-[var(--color-primary)] leading-[1]">Konfirmasi</h4>
+          <div
+            className="fixed inset-0 z-[1000] flex items-center justify-center bg-[var(--color-bg-dark)]/80 backdrop-blur-sm p-4"
+            onClick={() => setShowRsvpConfirm(false)}
+          >
+            <div
+              className="bg-[var(--color-bg-light)] w-full max-w-md p-8 relative rounded-sm border border-[var(--color-gold)]/30 text-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h4 className="font-script text-[3rem] text-[var(--color-primary)] leading-[1]">
+                Konfirmasi
+              </h4>
               <div className="w-12 h-[1px] bg-[var(--color-gold)] mx-auto mt-4 mb-6" />
               <p className="font-serif italic text-[var(--color-text-main)] mb-8">
-                Konfirmasi RSVP hanya dapat dilakukan satu kali. Apakah Anda yakin dengan data tersebut?
+                Konfirmasi RSVP hanya dapat dilakukan satu kali. Apakah Anda
+                yakin dengan data tersebut?
               </p>
               <div className="flex gap-4">
                 <button
@@ -444,7 +510,7 @@ export const RsvpWishesSection: React.FC = () => {
               </div>
             </div>
           </div>,
-          document.body
+          document.body,
         )}
     </div>
   );

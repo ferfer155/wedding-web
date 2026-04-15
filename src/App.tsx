@@ -129,7 +129,9 @@ export default function App() {
 
   const desktopLeftRef = useRef<HTMLDivElement>(null);
   const desktopRightContentRef = useRef<HTMLDivElement>(null);
-  const desktopTransitionRef = useRef<{ play: (cb?: () => void) => void }>(null);
+  const desktopTransitionRef = useRef<{ play: (cb?: () => void) => void }>(
+    null,
+  );
 
   const mobileContentRef = useRef<HTMLDivElement>(null);
   const mobileTransitionRef = useRef<{ play: (cb?: () => void) => void }>(null);
@@ -200,7 +202,7 @@ export default function App() {
       ease: "power2.inOut",
     });
 
-    // 2. Zoom background 
+    // 2. Zoom background
     if (bgImage) {
       tl.to(
         bgImage,
@@ -242,8 +244,8 @@ export default function App() {
 
   return (
     <>
-      <MusicPlayer src="/music.mp3" />
-      
+      <MusicPlayer src="/music.mp3" playOnOpen={isDetailVisible} />
+
       {!isLoaded && (
         <LoadingScreen
           onSplitStart={handleSplitStart}
@@ -252,13 +254,8 @@ export default function App() {
       )}
 
       <div className="relative w-full min-h-screen bg-[var(--color-bg-light)] overflow-hidden font-serif text-[var(--color-text-main)]">
-        
-        {/* ========================================== */}
-        {/* DESKTOP & TABLET LAYOUT (SPLIT SCREEN)     */}
-        {/* ========================================== */}
         <div className="md:flex relative w-full h-screen flex-row">
-          
-          {/* ── LEFT SIDE (≈65%) - ALWAYS VISIBLE ── */}
+          {/* Left Side */}
           <div
             ref={desktopLeftRef}
             className="hidden md:flex flex-col items-center justify-center relative w-[65%] h-full overflow-hidden p-8 lg:p-16"
@@ -294,7 +291,9 @@ export default function App() {
               {/* Elegant Divider */}
               <div className="flex items-center justify-center w-full max-w-md mb-12 opacity-80">
                 <div className="gold-line-h flex-1"></div>
-                <div className="mx-6 text-[var(--color-gold)] text-[1rem]">✦</div>
+                <div className="mx-6 text-[var(--color-gold)] text-[1rem]">
+                  ✦
+                </div>
                 <div className="gold-line-h flex-1"></div>
               </div>
 
@@ -308,9 +307,8 @@ export default function App() {
             </div>
           </div>
 
-          {/* ── RIGHT SIDE (≈35%) - ANIMATES AND SHOWS DETAILS ── */}
+          {/* Right Side */}
           <div className="relative w-full md:w-[35%] h-full flex flex-col items-center justify-center overflow-hidden z-10 shadow-[-20px_0_40px_rgba(0,0,0,0.08)] bg-[var(--color-bg-light)]">
-            
             {/* Initial Content (Cover) */}
             <div
               ref={desktopRightContentRef}
@@ -333,10 +331,12 @@ export default function App() {
                   </p>
                   <h1 className="text-6xl md:text-7xl font-script text-[var(--color-primary)] py-8 leading-[0.8] drop-shadow-sm">
                     <p>{weddingData.couple.bride.nickname}</p>
-                    <p className="font-serif text-3xl md:text-4xl text-[var(--color-gold)] my-2">&amp;</p>
+                    <p className="font-serif text-3xl md:text-4xl text-[var(--color-gold)] my-2">
+                      &amp;
+                    </p>
                     <p>{weddingData.couple.groom.nickname}</p>
                   </h1>
-                  
+
                   {/* Guest Name */}
                   <div className="pt-6 w-full flex flex-col items-center space-y-2">
                     <p className="font-sans text-[0.55rem] tracking-[0.3em] font-medium text-[var(--color-text-muted)] uppercase drop-shadow-sm">
@@ -367,9 +367,7 @@ export default function App() {
                 <DetailBackground />
                 <FlowerDecorations />
                 {/* Thin Golden Border Frame replacing thick old borders */}
-                <div
-                  className="absolute inset-4 border border-[var(--color-gold)]/20 pointer-events-none rounded-xl z-20"
-                />
+                <div className="absolute inset-4 border border-[var(--color-gold)]/20 pointer-events-none rounded-xl z-20" />
 
                 <SmoothScroll>
                   <DetailSection />
@@ -378,74 +376,6 @@ export default function App() {
             )}
           </div>
         </div>
-
-        {/* ========================================== */}
-        {/* MOBILE LAYOUT ONLY (To Ensure mobile behaves correctly) */}
-        {/* ========================================== */}
-        <div className="md:hidden relative w-full h-[100svh] overflow-hidden flex flex-col">
-           {/* If we need a completely distinct mobile wrapper, we handle it here. Otherwise, the logic inside desktopRightContentRef acts as the full mobile screen on md:hidden devices. 
-               We will render a dedicated mobile content block just for safety matching user's reference. */}
-           <div
-              ref={mobileContentRef}
-              className="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-10"
-            >
-              <img
-                src="/image_background_1.png"
-                alt="Background"
-                className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-multiply"
-                onError={(e) => {
-                  e.currentTarget.src =
-                    "https://picsum.photos/seed/palace/800/1200";
-                }}
-              />
-
-              <div className="relative z-10 flex flex-col items-center h-full justify-center w-full space-y-8 p-6">
-                <div className="flex flex-col items-center text-center w-full px-4 mt-auto">
-                  <p className="section-label mb-2 drop-shadow-sm">
-                    The Wedding Of
-                  </p>
-                  <h1 className="text-6xl font-script text-[var(--color-primary)] py-8 leading-[0.8] drop-shadow-sm">
-                    <p>{weddingData.couple.bride.nickname}</p>
-                    <p className="font-serif text-3xl text-[var(--color-gold)] my-2">&amp;</p>
-                    <p>{weddingData.couple.groom.nickname}</p>
-                  </h1>
-                  
-                  {/* Guest Name */}
-                  <div className="pt-6 w-full flex flex-col items-center space-y-2">
-                    <p className="font-sans text-[0.55rem] tracking-[0.3em] font-medium text-[var(--color-text-muted)] uppercase drop-shadow-sm">
-                      Dear
-                    </p>
-                    <p className="font-serif text-lg font-bold text-[var(--color-text-main)] drop-shadow-sm">
-                      {guestName}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="w-full mt-auto mb-16">
-                  <button
-                    onClick={() => handleLihatDetail(true)}
-                    className="btn-luxury w-full"
-                  >
-                    Buka Undangan
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <TransitionOverlay ref={mobileTransitionRef} />
-
-            {/* Detail Section (Mobile) */}
-            {isDetailVisible && (
-              <div className="absolute inset-0 z-40 overflow-hidden bg-[var(--color-bg-light)]">
-                <DetailBackground />
-                <FlowerDecorations />
-                <SmoothScroll>
-                  <DetailSection />
-                </SmoothScroll>
-              </div>
-            )}
-        </div>
-
       </div>
     </>
   );

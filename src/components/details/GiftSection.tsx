@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Copy, Gift, MapPin, X } from "lucide-react";
+import { Copy, Gift, MapPin, X, Phone, Map } from "lucide-react";
 import weddingData from "../../data/wedding-data.json";
 
 export const GiftSection: React.FC = () => {
@@ -39,7 +39,6 @@ export const GiftSection: React.FC = () => {
   return (
     <section className="py-24 w-full">
       <div className="w-full max-w-sm mx-auto text-center space-y-10">
-        
         <div className="animate-section" data-anim="fade-up">
           <p className="font-sans text-[0.6rem] tracking-[0.3em] uppercase text-[var(--color-text-muted)] mb-3">
             Tanda Kasih
@@ -54,9 +53,9 @@ export const GiftSection: React.FC = () => {
           </h3>
         </div>
 
-        <div 
-          className="animate-section bg-white/70 backdrop-blur-md p-8 border-y border-[var(--color-gold)]/20 shadow-[0_10px_40px_-20px_rgba(122,46,57,0.1)] relative" 
-          data-anim="fade-up" 
+        <div
+          className="animate-section bg-white/70 backdrop-blur-md p-8 border-y border-[var(--color-gold)]/20 shadow-[0_10px_40px_-20px_rgba(122,46,57,0.1)] relative"
+          data-anim="fade-up"
           data-delay="0.1"
         >
           {/* subtle corner accents */}
@@ -67,8 +66,8 @@ export const GiftSection: React.FC = () => {
 
           <p className="font-serif italic text-sm text-[var(--color-text-muted)] leading-relaxed mb-8">
             Kehadiran dan doa restu Anda adalah anugerah terindah bagi kami.
-            Namun jika Anda ingin memberikan tanda kasih secara langsung,
-            Anda dapat mengirimkannya melalui:
+            Namun jika Anda ingin memberikan tanda kasih secara langsung, Anda
+            dapat mengirimkannya melalui:
           </p>
 
           <div className="space-y-4">
@@ -105,8 +104,14 @@ export const GiftSection: React.FC = () => {
       {/* ── MODALS ── */}
       {showBankModal &&
         createPortal(
-          <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-[var(--color-bg-dark)]/80 backdrop-blur-sm p-4" onClick={() => setShowBankModal(false)}>
-            <div className="bg-[var(--color-bg-light)] w-full max-w-md p-8 relative rounded-sm border border-[var(--color-gold)]/30" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-[1000] flex items-center justify-center bg-[var(--color-bg-dark)]/80 backdrop-blur-sm p-4"
+            onClick={() => setShowBankModal(false)}
+          >
+            <div
+              className="bg-[var(--color-bg-light)] w-full max-w-md p-8 relative rounded-sm border border-[var(--color-gold)]/30"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 onClick={() => setShowBankModal(false)}
                 className="absolute top-4 right-4 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transiton-colors"
@@ -115,13 +120,18 @@ export const GiftSection: React.FC = () => {
               </button>
 
               <div className="text-center mb-8">
-                <h4 className="font-script text-[3rem] text-[var(--color-primary)] leading-[1]">Bank Transfer</h4>
+                <h4 className="font-script text-[3rem] text-[var(--color-primary)] leading-[1]">
+                  Bank Transfer
+                </h4>
                 <div className="w-12 h-[1px] bg-[var(--color-gold)] mx-auto mt-4" />
               </div>
 
               <div className="space-y-6 max-h-[50vh] overflow-y-auto pr-2">
                 {weddingData.gifts.map((gift, idx) => (
-                  <div key={idx} className="bg-white p-6 border border-[rgba(0,0,0,0.05)] text-center space-y-3">
+                  <div
+                    key={idx}
+                    className="bg-white p-6 border border-[rgba(0,0,0,0.05)] text-center space-y-3"
+                  >
                     <p className="font-sans font-semibold text-[var(--color-text-main)] uppercase tracking-[0.1em] text-sm">
                       {gift.bank}
                     </p>
@@ -133,7 +143,12 @@ export const GiftSection: React.FC = () => {
                     </p>
 
                     <button
-                      onClick={() => handleCopy(gift.accountNumber.replace(/\s/g, ""), gift.bank)}
+                      onClick={() =>
+                        handleCopy(
+                          gift.accountNumber.replace(/\s/g, ""),
+                          gift.bank,
+                        )
+                      }
                       className={`mt-4 px-6 py-2 border font-sans text-[0.55rem] tracking-[0.2em] uppercase transition-all duration-300 ${
                         copiedBank === gift.bank
                           ? "bg-[var(--color-gold)] border-[var(--color-gold)] text-white"
@@ -141,7 +156,13 @@ export const GiftSection: React.FC = () => {
                       }`}
                     >
                       <div className="flex items-center justify-center gap-2">
-                        {copiedBank === gift.bank ? "Tersalin!" : <><Copy className="w-3 h-3" /> Salin Nomor</>}
+                        {copiedBank === gift.bank ? (
+                          "Tersalin!"
+                        ) : (
+                          <>
+                            <Copy className="w-3 h-3" /> Salin Nomor
+                          </>
+                        )}
                       </div>
                     </button>
                   </div>
@@ -149,13 +170,20 @@ export const GiftSection: React.FC = () => {
               </div>
             </div>
           </div>,
-          document.body
+          document.body,
         )}
 
-      {showAddressModal && weddingData.giftAddress &&
+      {showAddressModal &&
+        weddingData.giftAddress &&
         createPortal(
-          <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-[var(--color-bg-dark)]/80 backdrop-blur-sm p-4" onClick={() => setShowAddressModal(false)}>
-            <div className="bg-[var(--color-bg-light)] w-full max-w-md p-8 relative rounded-sm border border-[var(--color-gold)]/30" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-[1000] flex items-center justify-center bg-[var(--color-bg-dark)]/80 backdrop-blur-sm p-4"
+            onClick={() => setShowAddressModal(false)}
+          >
+            <div
+              className="bg-[var(--color-bg-light)] w-full max-w-md p-8 relative rounded-sm border border-[var(--color-gold)]/30"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 onClick={() => setShowAddressModal(false)}
                 className="absolute top-4 right-4 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transiton-colors"
@@ -164,34 +192,69 @@ export const GiftSection: React.FC = () => {
               </button>
 
               <div className="text-center mb-8">
-                <h4 className="font-script text-[3rem] text-[var(--color-primary)] leading-[1]">Alamat</h4>
+                <h4 className="font-script text-[3rem] text-[var(--color-primary)] leading-[1]">
+                  Alamat
+                </h4>
                 <div className="w-12 h-[1px] bg-[var(--color-gold)] mx-auto mt-4" />
               </div>
 
-              <div className="bg-white p-8 border border-[rgba(0,0,0,0.05)] text-center space-y-4">
-                <p className="font-serif text-lg text-[var(--color-primary-dark)] font-medium">
+              <div className="bg-white p-8 border border-[rgba(0,0,0,0.05)] text-center space-y-5">
+                <p className="font-serif text-xl tracking-wide text-[var(--color-primary-dark)] font-medium">
                   {weddingData.giftAddress.name}
                 </p>
+
+                {weddingData.giftAddress["No. Hp"] && (
+                  <div className="flex items-center justify-center gap-2 text-[var(--color-gold-dark)]">
+                    <Phone className="w-3.5 h-3.5" />
+                    <span className="font-sans text-xs tracking-widest font-medium">
+                      {weddingData.giftAddress["No. Hp"]}
+                    </span>
+                  </div>
+                )}
+
+                <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold)]/50 to-transparent mx-auto my-4" />
+
                 <p className="font-serif italic text-[0.95rem] text-[var(--color-text-muted)] leading-relaxed">
                   {weddingData.giftAddress.address}
                 </p>
 
-                <button
-                  onClick={() => handleCopyAddress(weddingData.giftAddress.address)}
-                  className={`mt-6 w-full py-3 border font-sans text-[0.6rem] tracking-[0.2em] uppercase transition-all duration-300 ${
-                    copiedAddress
-                      ? "bg-[var(--color-gold)] border-[var(--color-gold)] text-white"
-                      : "bg-[var(--color-primary-dark)] border-[var(--color-primary-dark)] text-white hover:bg-[var(--color-primary)]"
-                  }`}
-                >
-                  <div className="flex items-center justify-center gap-2">
-                    {copiedAddress ? "Alamat Tersalin!" : <><Copy className="w-3.5 h-3.5" /> Salin Alamat</>}
-                  </div>
-                </button>
+                <div className="flex flex-col gap-3 pt-4">
+                  {weddingData.giftAddress.mapLink && (
+                    <a
+                      href={weddingData.giftAddress.mapLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3 border border-[var(--color-primary)] text-[var(--color-primary)] font-sans text-[0.6rem] tracking-[0.2em] hover:bg-[var(--color-primary)] hover:text-white uppercase transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      <Map className="w-3.5 h-3.5" /> Buka Google Maps
+                    </a>
+                  )}
+
+                  <button
+                    onClick={() =>
+                      handleCopyAddress(weddingData.giftAddress.address)
+                    }
+                    className={`w-full py-3 border font-sans text-[0.6rem] tracking-[0.2em] uppercase transition-all duration-300 ${
+                      copiedAddress
+                        ? "bg-[var(--color-gold)] border-[var(--color-gold)] text-white"
+                        : "bg-[var(--color-primary-dark)] border-[var(--color-primary-dark)] text-white hover:bg-[var(--color-primary)]"
+                    }`}
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      {copiedAddress ? (
+                        "Alamat Tersalin!"
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" /> Salin Alamat
+                        </>
+                      )}
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
           </div>,
-          document.body
+          document.body,
         )}
     </section>
   );

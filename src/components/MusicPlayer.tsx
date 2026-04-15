@@ -3,9 +3,13 @@ import { Music, Pause, Play } from "lucide-react";
 
 interface MusicPlayerProps {
   src: string;
+  playOnOpen?: boolean;
 }
 
-export const MusicPlayer: React.FC<MusicPlayerProps> = ({ src }) => {
+export const MusicPlayer: React.FC<MusicPlayerProps> = ({
+  src,
+  playOnOpen,
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -20,6 +24,13 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ src }) => {
     };
   }, [src]);
 
+  // Effect to auto-play when prop is triggered
+  useEffect(() => {
+    if (playOnOpen && audioRef.current && !isPlaying) {
+      togglePlay();
+    }
+  }, [playOnOpen]);
+
   const togglePlay = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -28,23 +39,26 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ src }) => {
       } else {
         // Set initial volume to 0 before playing
         audioRef.current.volume = 0;
-        audioRef.current.play().then(() => {
-          setIsPlaying(true);
-          
-          // Fade in over 3 seconds
-          let vol = 0;
-          const fadeInterval = setInterval(() => {
-            if (vol < 1.0) {
-              vol += 0.05;
-              if (vol > 1.0) vol = 1.0;
-              if (audioRef.current) {
-                audioRef.current.volume = vol;
+        audioRef.current
+          .play()
+          .then(() => {
+            setIsPlaying(true);
+
+            // Fade in over 3 seconds
+            let vol = 0;
+            const fadeInterval = setInterval(() => {
+              if (vol < 1.0) {
+                vol += 0.05;
+                if (vol > 1.0) vol = 1.0;
+                if (audioRef.current) {
+                  audioRef.current.volume = vol;
+                }
+              } else {
+                clearInterval(fadeInterval);
               }
-            } else {
-              clearInterval(fadeInterval);
-            }
-          }, 150);
-        }).catch(e => console.log("Audio play failed:", e));
+            }, 150);
+          })
+          .catch((e) => console.log("Audio play failed:", e));
       }
     }
   };
@@ -62,12 +76,14 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ src }) => {
         aria-label={isPlaying ? "Pause music" : "Play music"}
       >
         {/* Pulsing ring when playing */}
-        <div 
+        <div
           className={`absolute inset-0 rounded-full border border-[var(--color-gold)] transition-opacity duration-1000 ${
-            isPlaying ? "opacity-100 animate-ping [animation-duration:3s]" : "opacity-0"
+            isPlaying
+              ? "opacity-100 animate-ping [animation-duration:3s]"
+              : "opacity-0"
           }`}
         />
-        
+
         {/* Inner ring */}
         <div className="absolute inset-1 rounded-full border border-[rgba(197,160,89,0.15)] pointer-events-none" />
 

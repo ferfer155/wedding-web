@@ -23,13 +23,16 @@ const PersonCard: React.FC<PersonCardProps> = ({
 }) => {
   return (
     <div
-      className="animate-section flex flex-col items-center text-center space-y-6"
+      className="animate-section flex flex-col items-center text-center space-y-6 pt-16"
       data-anim="fade-up"
       data-delay={animDelay}
     >
       {/* Editorial Style Portrait */}
       <div className="relative">
-        <div className="relative w-48 h-60 md:w-56 md:h-72 bg-white/50 p-2 rounded-t-[100px] rounded-b-md shadow-[0_20px_40px_-15px_rgba(122,46,57,0.15)] border border-[rgba(197,160,89,0.3)]">
+        <div
+          className="relative parallax-item w-48 h-60 md:w-56 md:h-72 bg-white/50 p-2 rounded-t-[100px] rounded-b-md shadow-[0_20px_40px_-15px_rgba(122,46,57,0.15)] border border-[rgba(197,160,89,0.3)]"
+          data-speed="0.1"
+        >
           <div className="w-full h-full rounded-t-[92px] rounded-b-sm overflow-hidden relative group">
             <img
               src={photo}
@@ -45,7 +48,10 @@ const PersonCard: React.FC<PersonCardProps> = ({
         </div>
 
         {/* Floating Role Badge */}
-        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-[var(--color-bg-light)] px-6 py-2 rounded-full border border-[var(--color-gold)]/40 shadow-sm whitespace-nowrap">
+        <div
+          className="absolute -bottom-4 left-1/2 -translate-x-1/2 parallax-item bg-[var(--color-bg-light)] px-6 py-2 rounded-full border border-[var(--color-gold)]/40 shadow-sm whitespace-nowrap"
+          data-speed="-0.2"
+        >
           <p className="font-sans text-[0.55rem] tracking-[0.3em] uppercase text-[var(--color-gold-dark)] font-medium">
             {role}
           </p>
@@ -53,7 +59,10 @@ const PersonCard: React.FC<PersonCardProps> = ({
       </div>
 
       {/* Text Info */}
-      <div className="pt-4 space-y-4 px-4 w-full">
+      <div
+        className="parallax-item pt-4 space-y-4 px-4 w-full"
+        data-speed="0.05"
+      >
         <div>
           <p className="font-script text-[3.5rem] leading-[1] text-[var(--color-primary)]">
             {fullName}
@@ -67,11 +76,16 @@ const PersonCard: React.FC<PersonCardProps> = ({
         </div>
 
         <div className="space-y-1">
-          <p className="font-serif italic text-[0.85rem] text-[var(--color-text-muted)]">Putra dari pasangan</p>
+          <p className="font-serif italic text-[0.85rem] text-[var(--color-text-muted)]">
+            Putri dari pasangan
+          </p>
           <p
             className="font-serif text-[0.95rem] text-[var(--color-text-main)] font-medium max-w-[200px] mx-auto leading-relaxed"
             dangerouslySetInnerHTML={{
-              __html: parents.replace(" & ", "<br/><span class='text-[0.7rem] text-[var(--color-gold-dark)] italic'>&</span><br/>"),
+              __html: parents.replace(
+                " & ",
+                "<br/><span class='text-[0.7rem] text-[var(--color-gold-dark)] italic'>&</span><br/>",
+              ),
             }}
           />
         </div>
@@ -84,7 +98,9 @@ const PersonCard: React.FC<PersonCardProps> = ({
             className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-full bg-[rgba(197,160,89,0.05)] border border-[rgba(197,160,89,0.2)] text-[var(--color-gold-dark)] hover:bg-[var(--color-gold)] hover:text-white transition-colors duration-300 group"
           >
             <Instagram strokeWidth={1.5} className="w-3.5 h-3.5" />
-            <span className="font-sans text-[0.55rem] tracking-[0.1em]">{instagram}</span>
+            <span className="font-sans text-[0.55rem] tracking-[0.1em]">
+              {instagram}
+            </span>
           </a>
         )}
       </div>

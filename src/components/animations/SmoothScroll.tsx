@@ -15,14 +15,15 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Use Lenis scoped to this specific scroll container since our App uses absolute layouts
     const lenis = new Lenis({
       wrapper: containerRef.current,
       content: containerRef.current.firstElementChild as HTMLElement,
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom ease
+      duration: 1.5, // Bobot scroll mewah, tidak terlalu pelan, tidak terlalu cepat
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential Out
       smoothWheel: true,
-      wheelMultiplier: 1,
+      wheelMultiplier: 0.85, // Memberikan resistensi pada roda mouse agar terasa berat & premium
+      syncTouch: false, // Matikan sinkronisasi agar momentum native Android/iOS tidak terganggu
+      touchMultiplier: 1.5, // Sedikit akselerasi tarikan jari agar cepat namun tetap smooth
     });
 
     lenis.on("scroll", ScrollTrigger.update);
