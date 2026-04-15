@@ -265,7 +265,7 @@ export default function App() {
             className="hidden md:flex flex-col items-center justify-center relative w-[65%] h-full overflow-hidden p-8 lg:p-16"
           >
             <img
-              src="/image 2.jpg"
+              src="/image 2.webp"
               alt="Palace and Garden Background"
               className="absolute inset-0 w-full h-full object-cover object-center opacity-90"
               onError={(e) => {
@@ -319,9 +319,10 @@ export default function App() {
               className="absolute inset-0 w-full h-full flex flex-col items-center justify-center pt-8 md:pt-0"
             >
               <img
-                src="/image_background_1.png"
+                src="/image_background_1.webp"
                 alt="Background"
                 className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-multiply"
+                
                 onError={(e) => {
                   e.currentTarget.src =
                     "https://picsum.photos/seed/palace/800/1200";
