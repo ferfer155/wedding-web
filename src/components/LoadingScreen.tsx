@@ -163,11 +163,6 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
           ref={contentRef}
           className="flex flex-col items-center max-w-sm w-full text-center"
         >
-          <p className="font-script text-4xl text-[var(--color-primary-light)] mb-4 tracking-wider">
-            {weddingData.couple.bride.nickname[0]} &{" "}
-            {weddingData.couple.groom.nickname[0]}
-          </p>
-
           <p className="section-label mb-8 tracking-[0.4em] text-[0.55rem]">
             Awaiting the moments...
           </p>

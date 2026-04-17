@@ -64,7 +64,7 @@ const PersonCard: React.FC<PersonCardProps> = ({
         data-speed="0.05"
       >
         <div>
-          <p className="font-script text-[3rem] leading-[1] text-[var(--color-primary)]">
+          <p className="text-[3rem] leading-[1] text-[var(--color-primary)]">
             {fullName}
           </p>
         </div>
