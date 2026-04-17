@@ -130,6 +130,7 @@ export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isDetailVisible, setIsDetailVisible] = useState(false);
   const [guestName, setGuestName] = useState("Saudara/i");
+  const [isMusicTriggred, setIsMusicTriggered] = useState(false)
 
   const desktopLeftRef = useRef<HTMLDivElement>(null);
   const desktopRightContentRef = useRef<HTMLDivElement>(null);
@@ -184,6 +185,7 @@ export default function App() {
   };
 
   const handleLihatDetail = (isMobile: boolean) => {
+    setIsMusicTriggered(true);
     const contentRef = isMobile ? mobileContentRef : desktopRightContentRef;
     const transitionRef = isMobile ? mobileTransitionRef : desktopTransitionRef;
 
@@ -248,7 +250,7 @@ export default function App() {
 
   return (
     <>
-      <MusicPlayer src="/music.mp3" playOnOpen={isDetailVisible} />
+      <MusicPlayer src="/music.mp3" playOnOpen={isMusicTriggred}  />
 
       {!isLoaded && (
         <LoadingScreen

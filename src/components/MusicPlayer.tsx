@@ -27,53 +27,12 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
   // Effect to auto-play when prop is triggered
   useEffect(() => {
     if (playOnOpen && audioRef.current && !isPlaying) {
+      if (audioRef.current) {
+        audioRef.current.currentTime = 0;
+      }
       togglePlay();
     }
   }, [playOnOpen]);
-
-  // Attempt to play on mount (first load)
-  useEffect(() => {
-    if (!audioRef.current) return;
-
-    let hasInteracted = false;
-
-    const startPlaying = () => {
-      if (!hasInteracted && audioRef.current && !isPlaying) {
-        hasInteracted = true;
-        // Remove listeners
-        document.removeEventListener("click", startPlaying);
-        document.removeEventListener("touchstart", startPlaying);
-        document.removeEventListener("keydown", startPlaying);
-
-        togglePlay();
-      }
-    };
-
-    // Try playing immediately
-    const attemptAutoPlay = async () => {
-      try {
-        if (!audioRef.current) return;
-        audioRef.current.volume = 0;
-        await audioRef.current.play();
-        setIsPlaying(true);
-        startFadeIn();
-      } catch (err) {
-        // Autoplay was blocked by browser. Wait for user interaction.
-        console.log("Autoplay blocked. Waiting for user interaction...");
-        document.addEventListener("click", startPlaying);
-        document.addEventListener("touchstart", startPlaying);
-        document.addEventListener("keydown", startPlaying);
-      }
-    };
-
-    attemptAutoPlay();
-
-    return () => {
-      document.removeEventListener("click", startPlaying);
-      document.removeEventListener("touchstart", startPlaying);
-      document.removeEventListener("keydown", startPlaying);
-    };
-  }, []);
 
   const startFadeIn = () => {
     let vol = 0;
