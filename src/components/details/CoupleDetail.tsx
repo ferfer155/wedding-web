@@ -10,6 +10,7 @@ interface PersonCardProps {
   photo: string;
   instagram?: string;
   animDelay?: string;
+  gender?: string;
 }
 
 const PersonCard: React.FC<PersonCardProps> = ({
@@ -20,6 +21,7 @@ const PersonCard: React.FC<PersonCardProps> = ({
   photo,
   instagram,
   animDelay = "0",
+  gender,
 }) => {
   return (
     <div
@@ -77,7 +79,7 @@ const PersonCard: React.FC<PersonCardProps> = ({
 
         <div className="space-y-1">
           <p className="font-serif italic text-[0.85rem] text-[var(--color-text-muted)]">
-            Putri dari pasangan
+            {gender == "male" ? "Putra" : "Putri"} dari pasangan
           </p>
           <p
             className="font-serif text-[0.95rem] text-[var(--color-text-main)] font-medium max-w-[200px] mx-auto leading-relaxed"
@@ -142,6 +144,7 @@ export const CoupleDetail: React.FC = () => {
           photo={weddingData.couple.groom.photo}
           instagram={weddingData.couple.groom.instagram}
           animDelay="0.1"
+          gender={"male"}
         />
       </section>
     </div>
