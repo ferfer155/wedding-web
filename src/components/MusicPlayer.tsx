@@ -31,6 +31,67 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
     }
   }, [playOnOpen]);
 
+  // Attempt to play on mount (first load)
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    let hasInteracted = false;
+
+    const startPlaying = () => {
+      if (!hasInteracted && audioRef.current && !isPlaying) {
+        hasInteracted = true;
+        // Remove listeners
+        document.removeEventListener("click", startPlaying);
+        document.removeEventListener("touchstart", startPlaying);
+        document.removeEventListener("keydown", startPlaying);
+
+        togglePlay();
+      }
+    };
+
+    // Try playing immediately
+    const attemptAutoPlay = async () => {
+      try {
+        if (!audioRef.current) return;
+        audioRef.current.volume = 0;
+        await audioRef.current.play();
+        setIsPlaying(true);
+        startFadeIn();
+      } catch (err) {
+        // Autoplay was blocked by browser. Wait for user interaction.
+        console.log("Autoplay blocked. Waiting for user interaction...");
+        document.addEventListener("click", startPlaying);
+        document.addEventListener("touchstart", startPlaying);
+        document.addEventListener("keydown", startPlaying);
+      }
+    };
+
+    attemptAutoPlay();
+
+    return () => {
+      document.removeEventListener("click", startPlaying);
+      document.removeEventListener("touchstart", startPlaying);
+      document.removeEventListener("keydown", startPlaying);
+    };
+  }, []);
+
+  const startFadeIn = () => {
+    let vol = 0;
+    if (audioRef.current) audioRef.current.volume = vol;
+
+    const fadeInterval = setInterval(() => {
+      if (vol < 1.0) {
+        vol += 0.05;
+        if (vol > 1.0) vol = 1.0;
+        if (audioRef.current) {
+          audioRef.current.volume = vol;
+        }
+      } else {
+        clearInterval(fadeInterval);
+      }
+    }, 150);
+  };
+
   const togglePlay = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -43,20 +104,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
           .play()
           .then(() => {
             setIsPlaying(true);
-
-            // Fade in over 3 seconds
-            let vol = 0;
-            const fadeInterval = setInterval(() => {
-              if (vol < 1.0) {
-                vol += 0.05;
-                if (vol > 1.0) vol = 1.0;
-                if (audioRef.current) {
-                  audioRef.current.volume = vol;
-                }
-              } else {
-                clearInterval(fadeInterval);
-              }
-            }, 150);
+            startFadeIn();
           })
           .catch((e) => console.log("Audio play failed:", e));
       }
